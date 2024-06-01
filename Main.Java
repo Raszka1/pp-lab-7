@@ -8,14 +8,14 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import java.io.File;
 
-//Dziedziczenie po Application
 public class Main extends Application {
 
-    //Prywatne zmienne
+    
     private TextField directoryPathField;
     private TextField searchField;
+    //Zad2 - Nowa prywatna zmienna
+    private TextArea resultArea;
     
-    //Wyzwolenie metody launch
     public static void main(String[] args) {
         launch(args);
     }
@@ -30,13 +30,18 @@ public class Main extends Application {
         searchField = new TextField();
         searchField.setPromptText("Enter search phrase");
 
+        //Uwzględnienie TextArea z wysokością = 400
+        resultArea = new TextArea();
+        resultArea.setPrefHeight(400);
+
         Button browseButton = new Button("Browse");
         browseButton.setOnAction(e -> browseDirectory());
 
         Button searchButton = new Button("Search");
 
         HBox hBox = new HBox(10, directoryPathField, browseButton);
-        VBox vBox = new VBox(10, hBox, searchField, searchButton);
+        //Dodanie resultArea do vBoxa
+        VBox vBox = new VBox(10, hBox, searchField, searchButton, resultArea);
 
         Scene scene = new Scene(vBox, 600, 200);
 
